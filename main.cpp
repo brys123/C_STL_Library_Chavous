@@ -12,6 +12,8 @@ create a single main.cpp that contains code samples and implementations of each 
 #include <cassert>
 #include <stack>
 #include <set>
+#include <utility>
+#include <map>
 
 using namespace std; 
 
@@ -68,6 +70,17 @@ public:
     } 
 }; 
 
+//map
+typedef map<string, int> MapT;
+typedef MapT::const_iterator MapIterT;
+
+//Predicate_Algorithm
+bool less_than_7(int value){ 
+      return value < 7; //return less than 7
+    }
+    vector<int> v2;
+    int count_less = std::count_if(v2.begin(), v2.end(), less_than_7); //count less than 7
+
 int main(int argc, char* argv []) 
 {
     /****Section_Name***Vectors*/ 
@@ -75,13 +88,7 @@ int main(int argc, char* argv [])
     vector<double> vd; //vd elments are floating point numbers
     vector<int> vi; //vi elements are integer numbers 
     vector<string> vs; //vs elements are string objects 
-    string a;
-    string b;
-    string c;
-
-    a = 'a';
-    b = 'b';
-    c = 'c';
+    
     //Expand this code to:
 
     //add 3 elements to the vd vector
@@ -95,9 +102,9 @@ int main(int argc, char* argv [])
     vi.push_back(3);
 
    // add 3 elements to the vs vector
-    vs.push_back(a);
-    vs.push_back(b);
-    vs.push_back(c);
+    vs.push_back("a");
+    vs.push_back("b");
+    vs.push_back("c");
 
    // display the 3 elements in the vd vector
    cout << "\nValues in vd: \n"; 
@@ -188,39 +195,76 @@ int main(int argc, char* argv [])
     iset.insert (22);
     iset.insert (22);
 
+    cout << "\n" << endl;
     if (iset.find(55) != iset.end() ){ // is value already stored?
       iset.insert(55);
     }
     assert(iset.size() == 4);//check size
-    set<int>::iterator it;
-    for (it = iset.begin(); it != iset.end(); ++it){
-      cout << " " << *it;
-    }
-
-    //Write comments that help one better understand what the code is doing.
+    set<int>::iterator it2;
+    for (it2 = iset.begin(); it2 != iset.end(); ++it2){
+      cout << " " << *it2;
+    } //Write comments that help one better understand what the code is doing.
 
     /****Section_Name****Pair_Structure*/
     //Write the code as presented in: 4. std::pair structure
+    pair<string, string> strstr; //set
+    strstr.first = "hello"; //put in values
+    strstr.second = "world";
 
-    //Write comments that help one better understand what the code is doing.
+    pair<int, string> intstr; //set
+    intstr.first = 1; //put in values
+    intstr.second = "one";
+
+    pair<string, int> strint("two", 2);//put values in while defining
+    assert(strint.first == "two");//check
+    assert(strint.second == 2); //Write comments that help one better understand what the code is doing.
 
     /****Section_Name**** Map_Insert*/
     //Write the code as presented in: 14. std::map::insert
-
+    MapT amap;//make map variable
+    pair<MapIterT, bool> result =
+      amap.insert(make_pair("Fred", 45)); //put in values
+      assert(result.second == true);//check
     //Write comments that help one better understand what the code is doing.
 
     /****Section_Name****Map_Summary*/
     //Write the code as presented in: 16. Map summary
+    map<string, string> phone_book; //input values
+    phone_book["411"] = "Directory";
+    phone_book["911"] = "Emergency";
+    phone_book["508-678-2811"] = "BCC";
 
+    cout << "\n" << endl;
+    if (phone_book.find("411") != phone_book.end()){
+      phone_book.insert(make_pair(string("411"), string("Directory")));
+    }
+
+    assert(phone_book.size() == 3);
+    map<string, string>::const_iterator it3;
+    for (it3 = phone_book.begin(); it3 != phone_book.end(); ++it3){ //output data
+      cout << " " << it3->first << " " << it3->second << endl;
+    }
     //Write comments that help one better understand what the code is doing.
 
     /****Section_Name**** Sort_Algorithm*/
     //Write the code as presented in: 23. sort example
 
+    int arr[100];
+    sort(arr, arr + 100);
+    vector<int> v1;
+    sort(v1.begin(), v1.end());
     //Write comments that help one better understand what the code is doing.
 
     /****Section_Name****Predicate_Algorithm*/
     //Write the code as presented in: 25. count_if and predicate function
+
+    /*
+    bool less_than_7(int value){ 
+      return value < 7; //return less than 7
+    }
+    vector<int> v2;
+    int count_less = std::count_if(v2.begin(), v2.end(), less_than_7); //count less than 7
+    */
 
     //Write comments that help one better understand what the code is doing. 
 
